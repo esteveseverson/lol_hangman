@@ -22,7 +22,7 @@ def championSelect():
 def hangmanHeader():
     os.system('cls')
     print('JOGO DA FORCA')
-    print('Tema: Campeões de League of Legends\n-----------------------------------\n')
+    print('Tema: Campeões de League of Legends\n-----------------------------------')
 
 
 def validate_letter():
@@ -67,6 +67,14 @@ def guess_word():
             right_letters.append(caractere)
     return right_letters
 
+def missing_letters():
+    cont = 0
+    for x in word:
+        if x == '_':
+            cont += 1
+    print(f'\t\tAinda faltam {cont} letras')
+    return cont
+
 define_champion = list(championSelect())
 selected_champion = define_champion[0]
 tip = define_champion[1]
@@ -82,6 +90,21 @@ while max_attempts > 0:
     print(f'\nVocê tem {max_attempts} tentativas\n')
     print(f'A classe desse personagem é {tip}\n')
     print(f'A palavra que você tem que adivinhar é´: {word}')
+    missing_letters()
     verify_letter = validate_letter()
     if not check_correct_letter():
         max_attempts -= 1
+    if missing_letters() == 0:
+        break
+
+if max_attempts > 0:
+    hangmanHeader()
+    print('Parabéns você ganhou\n\n')
+    print(f'Sobraram {max_attempts} tentativas')
+    print(f'O campeão que você adivinhou foi {selected_champion}\n\n')
+    print('FIM DA EXECUÇÃO DO PROGRAMA\n')
+else:
+    hangmanHeader()
+    print('Que pena, você perdeu\n')
+    print(f'A palavra era {selected_champion}')
+    print('FIM DA EXECUÇÃO DO PROGRAMA\n')
