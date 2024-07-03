@@ -28,7 +28,7 @@ def hangmanHeader():
 def validate_letter():
     while True:
 
-        print(f'Letras já utilizadas: {repeated_letters}')
+        print(f'\nLetras já utilizadas: {repeated_letters}\n')
 
         chosen_letter = input('\nEscolha uma letra (caso seja uma palavra, será considerada apenas a primeira letra): ').strip().upper()[:1]
 
@@ -49,6 +49,15 @@ def validate_letter():
             print(f'Você ainda tem {max_attempts} tentativas\n')
     return chosen_letter
 
+def check_correct_letter():
+    if verify_letter in selected_champion:
+        ids = [i for i, x in enumerate(selected_champion) if x == verify_letter]
+        for i in ids:
+            word[i] = verify_letter
+        return True
+    else:
+        return False
+
 def guess_word():
     right_letters = []
     for caractere in selected_champion:
@@ -64,12 +73,15 @@ tip = define_champion[1]
 repeated_letters = []
 
 selected_champion = selected_champion.upper()
+word = guess_word()
 
 max_attempts = 6
 
 while max_attempts > 0:
     hangmanHeader()
-    print(f'Você tem {max_attempts} tentativas')
-    word = guess_word()
+    print(f'\nVocê tem {max_attempts} tentativas\n')
+    print(f'A classe desse personagem é {tip}\n')
+    print(f'A palavra que você tem que adivinhar é´: {word}')
     verify_letter = validate_letter()
-    max_attempts -= 1
+    if not check_correct_letter():
+        max_attempts -= 1
