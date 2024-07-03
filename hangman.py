@@ -41,6 +41,7 @@ def validate_letter():
                 break
             else:
                 hangmanHeader()
+                print(f'A palavra que você tem que adivinhar é´: {word}')
                 print(f"'{chosen_letter}' já foi utilizada, favor escolher outra")
                 print(f'Você ainda tem {max_attempts} tentativas\n')
         else:
