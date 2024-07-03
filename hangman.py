@@ -19,7 +19,7 @@ def championSelect():
     nome_aleatorio, classe_aleatoria = campeao_aleatorio
     return campeao_aleatorio
 
-def hagmanHeader():
+def hangmanHeader():
     os.system('cls')
     print('JOGO DA FORCA')
     print('Tema: Campeões de League of Legends\n-----------------------------------\n')
@@ -30,7 +30,7 @@ def validate_letter():
 
         print(f'Letras já utilizadas: {repeated_letters}')
 
-        chosen_letter = input('\nEscolha uma letra (caso seja uma palavra, será considerada apenas a primeira letra): ').strip()
+        chosen_letter = input('\nEscolha uma letra (caso seja uma palavra, será considerada apenas a primeira letra): ').strip().upper()[:1]
 
         check_letter = lambda letter: bool(re.match(r'^[a-zA-Z]+$', letter))
         already_use = lambda letter: letter in repeated_letters
@@ -40,24 +40,28 @@ def validate_letter():
                 repeated_letters.append(chosen_letter)
                 break
             else:
-                hagmanHeader()
+                hangmanHeader()
                 print(f"'{chosen_letter}' já foi utilizada, favor escolher outra")
                 print(f'Você ainda tem {max_attempts} tentativas\n')
         else:
-            hagmanHeader()
+            hangmanHeader()
             print(f"'{chosen_letter}' não é uma letra válida, favor escolher outra")
             print(f'Você ainda tem {max_attempts} tentativas\n')
     return chosen_letter
 
-chosen_champion = list(championSelect())
-
+define_champion = list(championSelect())
+selected_champion = define_champion[0]
+tip = define_champion[1]
 right_letters = []
+
+selected_champion = selected_champion.upper()
+
 repeated_letters = []
 
 max_attempts = 6
 
 while max_attempts > 0:
-    hagmanHeader()
+    hangmanHeader()
     print(f'Você tem {max_attempts} tentativas')
     verify_letter = validate_letter()
     max_attempts -= 1
