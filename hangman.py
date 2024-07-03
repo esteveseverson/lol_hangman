@@ -24,12 +24,25 @@ def hagmanHeader():
     print('JOGO DA FORCA')
     print('Tema: Campeões de League of Legends\n-----------------------------------\n')
 
+
 def validate_letter():
     while True:
-        chosen_letter = input('\nEscolha uma letra: ')
-        check_letter = lambda chosen_letter: bool(re.match(r'^[a-zA-Z]+$', chosen_letter))
+
+        print(f'Letras já utilizadas: {repeated_letters}')
+
+        chosen_letter = input('\nEscolha uma letra (caso seja uma palavra, será considerada apenas a primeira letra): ').strip()
+
+        check_letter = lambda letter: bool(re.match(r'^[a-zA-Z]+$', letter))
+        already_use = lambda letter: letter in repeated_letters
+
         if check_letter(chosen_letter):
-            break
+            if not already_use(chosen_letter):
+                repeated_letters.append(chosen_letter)
+                break
+            else:
+                hagmanHeader()
+                print(f"'{chosen_letter}' já foi utilizada, favor escolher outra")
+                print(f'Você ainda tem {max_attempts} tentativas\n')
         else:
             hagmanHeader()
             print(f"'{chosen_letter}' não é uma letra válida, favor escolher outra")
@@ -39,6 +52,7 @@ def validate_letter():
 chosen_champion = list(championSelect())
 
 right_letters = []
+repeated_letters = []
 
 max_attempts = 6
 
