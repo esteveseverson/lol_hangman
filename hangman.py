@@ -1,4 +1,6 @@
 import random
+import os
+import re
 
 def championSelect():
 
@@ -17,5 +19,31 @@ def championSelect():
     nome_aleatorio, classe_aleatoria = campeao_aleatorio
     return campeao_aleatorio
 
-campeao_escolhido = list(championSelect())
-print(campeao_escolhido)
+def hagmanHeader():
+    os.system('cls')
+    print('JOGO DA FORCA')
+    print('Tema: Campeões de League of Legends\n-----------------------------------\n')
+
+def validate_letter():
+    while True:
+        chosen_letter = input('\nEscolha uma letra: ')
+        check_letter = lambda chosen_letter: bool(re.match(r'^[a-zA-Z]+$', chosen_letter))
+        if check_letter(chosen_letter):
+            break
+        else:
+            hagmanHeader()
+            print(f"'{chosen_letter}' não é uma letra válida, favor escolher outra")
+            print(f'Você ainda tem {max_attempts} tentativas\n')
+    return chosen_letter
+
+chosen_champion = list(championSelect())
+
+right_letters = []
+
+max_attempts = 6
+
+while max_attempts > 0:
+    hagmanHeader()
+    print(f'Você tem {max_attempts} tentativas')
+    verify_letter = validate_letter()
+    max_attempts -= 1
