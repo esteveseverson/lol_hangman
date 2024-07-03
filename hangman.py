@@ -87,8 +87,7 @@ max_attempts = 6
 
 while max_attempts > 0:
     hangmanHeader()
-    print(f'\nVocê tem {max_attempts} tentativas\n')
-    print(f'A classe desse personagem é {tip}\n')
+    print(f'\nA dica é que a classe desse personagem é {tip}, você tem {max_attempts} tentativas\n')
     print(f'A palavra que você tem que adivinhar é´: {word}')
     missing_letters()
     verify_letter = validate_letter()
@@ -99,9 +98,8 @@ while max_attempts > 0:
 
 if max_attempts > 0:
     hangmanHeader()
-    print('Parabéns você ganhou\n\n')
-    print(f'Sobraram {max_attempts} tentativas')
-    print(f'O campeão que você adivinhou foi {selected_champion}\n\n')
+    print('Parabéns você ganhou\n')
+    print(f'Sobraram {max_attempts} tentativas e o campeão que você adivinhou foi {selected_champion}\n')
     print('FIM DA EXECUÇÃO DO PROGRAMA\n')
 else:
     hangmanHeader()
