@@ -49,19 +49,27 @@ def validate_letter():
             print(f'Você ainda tem {max_attempts} tentativas\n')
     return chosen_letter
 
+def guess_word():
+    right_letters = []
+    for caractere in selected_champion:
+        if caractere.isalpha():
+            right_letters.append('_')
+        else:
+            right_letters.append(caractere)
+    return right_letters
+
 define_champion = list(championSelect())
 selected_champion = define_champion[0]
 tip = define_champion[1]
-right_letters = []
+repeated_letters = []
 
 selected_champion = selected_champion.upper()
-
-repeated_letters = []
 
 max_attempts = 6
 
 while max_attempts > 0:
     hangmanHeader()
     print(f'Você tem {max_attempts} tentativas')
+    word = guess_word()
     verify_letter = validate_letter()
     max_attempts -= 1
