@@ -75,7 +75,7 @@ Malphite	02/09/2009	Tanque
 Malzahar	01/06/2010	Mago
 Maokai	16/02/2011	Tanque
 Master Yi	21/02/2009	Assassino
-Milio	23/03/2023	
+Milio	23/03/2023	Suporte
 Miss Fortune	08/09/2010	Atirador
 Mordekaiser	24/02/2010	Lutador
 Morgana	21/02/2009	Mago
